@@ -104,6 +104,78 @@ void seize_number(int grid[DIM][DIM])
 }
 
 
+// on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille 
+int is_correct(int grid[DIM][DIM], int i, int j, int k){
+	int continu = 1 ; 
+	
+	// ON VÉRIFIE LA LIGNE 
+	int c=0; 
+	while ((continu = 1)&&(c<9)){
+		if (c==j){
+			c++;
+			}
+		else {
+			c++;
+			if (grid[i][c]==k){
+				continu = 0;
+				}
+		}
+		}
+	
+	// ON VERIFIE LA COLONNE 
+	int l = 0; 
+	while ((continu = 1)&&(l<9)){
+		if (l==i){
+			l++;
+			}
+		else {
+			l++;
+			if (grid[l][j]==k){
+				continu = 0;
+				}
+			}
+		}
+	
+	//ON VERIFIE LA MATRICE 
+	
+	//1. il faut identifier la sous matrice {(0,1,2);(3,4,5);(6,7,8)}
+	int m=0;
+	if (i<3){
+		if (j<3){
+			m=0;}
+		if ((j>=3)&&(j<6)){
+			m=1;}
+		if (j>=6){
+			m=2;}
+		}
+	if ((i>=3)&&(i<6)){
+		if (j<3){
+			m=3;}
+		if ((j>=3)&&(j<6)){
+			m=4;}
+		if (j>=6){
+			m=5;}
+		}
+	if (i>6){
+		if (j<3){
+			m=6;}
+		if ((j>=3)&&(j<6)){
+			m=7;}
+		if (j>=6){
+			m=8;}
+		}
+		
+	
+	//2. on vérifie la sous matrice 
+	while ((continu = 1)){
+		for (int n=0, n<3, n++){
+			for (int g =0, g<3, g++){
+				if (grid[][]==k){
+					continu = 0;}
+					
+				
+			
+	
 
 
 

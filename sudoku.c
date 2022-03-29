@@ -44,9 +44,28 @@ void full_grid(int grid[DIM][DIM])
 		}
 		free(liste);
 	}	
-	
-
 }
+
+
+void remove_elements(int grid[DIM][DIM], int k)
+{
+	for(int i=0; i<k; i++)
+	{
+		int a=rand()%DIM; int b=rand()%DIM;
+		while(grid[a][b]==0)
+		{
+			int a=rand()%DIM; int b=rand()%DIM;
+		}
+		grid[a][b]=0;
+
+	}
+}
+
+
+
+
+
+
 
 
 

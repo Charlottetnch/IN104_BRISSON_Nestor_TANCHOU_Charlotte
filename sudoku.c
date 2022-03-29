@@ -40,7 +40,6 @@ void full_grid(int grid[DIM][DIM])
 				grid[i*3+k][i*3+j]=liste[index];
 				index++;
 			}
-			
 		}
 		free(liste);
 	}	
@@ -57,13 +56,52 @@ void remove_elements(int grid[DIM][DIM], int k)
 			int a=rand()%DIM; int b=rand()%DIM;
 		}
 		grid[a][b]=0;
-
 	}
 }
 
 
 
+void seize_number(int grid[DIM][DIM])
+{
+	int lgn;
+	int res1;
+	printf("\nSaisissez le numéro de la ligne : ");
+	res1=scanf("%d",&lgn);
+	if(res1==1 && lgn>0 && lgn <10)
+	{
+		int col;
+		int res2;
+		printf("\nSaisissez le numéro de la colonne : ");
+		res2=scanf("%d",&col);
+		if(res2==1 col>0 && col<10)
+		{
+			int num;
+			int res3;
+			printf("\nSaisissez le chiffre : ");
+			res3=scanf("%d",&num);
+			if(res3==1 num>0 && num<10)
+			{
+				grid[lgn][col]=num;
+			}
+			else
+			{
+				printf("Une erreur s'est produite veuillez recommencer, votre nombre est-il compris entre 1 et 9 ?");
+				seize_number(grid[DIM][DIM]);
+			}
+		}
+		else
+			{
+				printf("Une erreur s'est produite veuillez recommencer, votre nombre est-il compris entre 1 et 9 ?");
+				seize_number(grid[DIM][DIM]);
+			}
 
+	}
+	else
+			{
+				printf("Une erreur s'est produite veuillez recommencer, votre nombre est-il compris entre 1 et 9 ?");
+				seize_number(grid[DIM][DIM]);
+			}
+}
 
 
 

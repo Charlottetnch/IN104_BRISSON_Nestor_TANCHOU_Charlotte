@@ -5,7 +5,7 @@
 #define DIM 9
 
 
-
+aaa
 int* nb_alea()
 {
 	int* liste=malloc(DIM*sizeof(int));

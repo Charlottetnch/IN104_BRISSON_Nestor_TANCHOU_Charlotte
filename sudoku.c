@@ -5,7 +5,7 @@
 #define DIM 9
 
 
-aaa
+
 int* nb_alea()
 {
 	int* liste=malloc(DIM*sizeof(int));
@@ -27,7 +27,14 @@ int* nb_alea()
 
 void full_grid(int grid[DIM][DIM])
 {
-	
+	//On remplit notre grille au préalable avec des 0
+	for(int i=0;i<9;i++)
+	{
+		for(int j=0;j<9;j++)
+		{
+			grid[i][j]=0;
+		}
+	}
 	//Boucle où l'on choisit la grille où l'on se place
 	for(int i=0;i<3;i++)
 	{
@@ -53,7 +60,8 @@ void remove_elements(int grid[DIM][DIM], int k)
 		int a=rand()%DIM; int b=rand()%DIM;
 		while(grid[a][b]==0)
 		{
-			int a=rand()%DIM; int b=rand()%DIM;
+			a=rand()%DIM; 
+			b=rand()%DIM;
 		}
 		grid[a][b]=0;
 	}
@@ -73,39 +81,50 @@ void seize_number(int grid[DIM][DIM])
 		int res2;
 		printf("\nSaisissez le numéro de la colonne : ");
 		res2=scanf("%d",&col);
-		if(res2==1 col>0 && col<10)
+		if(res2==1 && col>0 && col<10)
 		{
 			int num;
 			int res3;
 			printf("\nSaisissez le chiffre : ");
 			res3=scanf("%d",&num);
-			if(res3==1 num>0 && num<10)
+			if(res3==1 && num>0 && num<10)
 			{
-				grid[lgn][col]=num;
+				if(grid[lgn-1][col-1]==0)
+				{
+					grid[lgn-1][col-1]=num;
+				}
+				else
+				{
+					printf("La case que vous avez choisie est déjà remplie, veuillez en choisir une autre");
+					seize_number(grid);
+				}
+
+
 			}
 			else
 			{
 				printf("Une erreur s'est produite veuillez recommencer, votre nombre est-il compris entre 1 et 9 ?");
-				seize_number(grid[DIM][DIM]);
+				seize_number(grid);
 			}
 		}
 		else
 			{
 				printf("Une erreur s'est produite veuillez recommencer, votre nombre est-il compris entre 1 et 9 ?");
-				seize_number(grid[DIM][DIM]);
+				seize_number(grid);
 			}
 
 	}
 	else
 			{
 				printf("Une erreur s'est produite veuillez recommencer, votre nombre est-il compris entre 1 et 9 ?");
-				seize_number(grid[DIM][DIM]);
+				seize_number(grid);
 			}
 }
 
 
 // on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille 
-int is_correct(int grid[DIM][DIM], int i, int j, int k){
+void is_correct(int grid[DIM][DIM], int i, int j, int k)
+{
 	int continu = 1 ; 
 	
 	// ON VÉRIFIE LA LIGNE 
@@ -165,36 +184,39 @@ int is_correct(int grid[DIM][DIM], int i, int j, int k){
 			m=8;}
 		}
 		
-	
+	/*
 	//2. on vérifie la sous matrice 
-	while ((continu = 1)){
-		for (int n=0, n<3, n++){
-			for (int g =0, g<3, g++){
-				if (grid[][]==k){
+	while ((continu = 1))
+	{
+		for (int n=0; n<3; n++)
+			{
+			for (int g =0; g<3; g++)
+				{
+				if (grid[][]==k)
+					{
 					continu = 0;}
+				}
+			}
+	}
+	*/	
+}
+
+
 					
 				
 			
-	
-
-
 
 void show_grid(int grid[DIM][DIM])
 {
-	for(int i=0;i<3;i++)
+	for(int i=0;i<9;i++)
 	{
-		
-		for(int j=0;j<3;j++)
+		for(int j=0;j<9;j++)
 		{
-			if(i==1) printf("    ");
-			if(i==2) printf("        "); 
-			for(int k=0;k<3;k++)
-			{
-				printf("%d",grid[i*3+k][i*3+j]);
-			}
-			printf("\n");
-		}
+			if(grid[i][j]==0) printf(" ");
+			else printf("%d",grid[i][j]);
 
+		}
+		printf("\n");
 	}
 
 }
@@ -205,7 +227,8 @@ int main()
 	int grid[DIM][DIM];
 	full_grid(grid);
 	show_grid(grid);
-
+	seize_number(grid);
+	show_grid(grid);
 
 
 	return 345;

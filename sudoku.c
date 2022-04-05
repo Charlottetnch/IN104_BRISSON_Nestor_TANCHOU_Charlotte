@@ -25,16 +25,9 @@ int* nb_alea()
 }
 
 
-void full_grid(int grid[DIM][DIM])
+void diagonales(int grid[DIM][DIM])
 {
-	//On remplit notre grille au préalable avec des 0
-	for(int i=0;i<9;i++)
-	{
-		for(int j=0;j<9;j++)
-		{
-			grid[i][j]=0;
-		}
-	}
+	
 	//Boucle où l'on choisit la grille où l'on se place
 	for(int i=0;i<3;i++)
 	{
@@ -51,6 +44,9 @@ void full_grid(int grid[DIM][DIM])
 		free(liste);
 	}	
 }
+
+
+
 
 
 void remove_elements(int grid[DIM][DIM], int k)
@@ -158,51 +154,127 @@ void is_correct(int grid[DIM][DIM], int i, int j, int k)
 	//ON VERIFIE LA MATRICE 
 	
 	//1. il faut identifier la sous matrice {(0,1,2);(3,4,5);(6,7,8)}
-	int m=0;
+	int I[3];
+	int J[3];
 	if (i<3){
+		I[0] = 0;
+		I[1] = 1; 
+		I[2] = 2;
+		//I = { 0 , 1 , 2 };
 		if (j<3){
-			m=0;}
+			J[0] = 0;
+			J[1] = 1; 
+			J[2] = 2;
+			//J = { 0 , 1 , 2 }; 
+			}
 		if ((j>=3)&&(j<6)){
-			m=1;}
+			J[0] = 3;
+			J[1] = 4; 
+			J[2] = 5;
+			//J = { 3 , 4 , 5 }; 
+			}
 		if (j>=6){
-			m=2;}
+			J[0] = 6;
+			J[1] = 7; 
+			J[2] = 8;
+			//J = { 6 , 7 , 8 }; 
+			}
 		}
 	if ((i>=3)&&(i<6)){
+		I[0] = 3;
+		I[1] = 4; 
+		I[2] = 5;
+		//int I[3] = { 3 , 4 , 5 };
 		if (j<3){
-			m=3;}
+			J[0] = 0;
+			J[1] = 1; 
+			J[2] = 2;
+			//int J[3] = { 0 , 1 , 2 }; 
+			}
 		if ((j>=3)&&(j<6)){
-			m=4;}
+			J[0] = 3;
+			J[1] = 4; 
+			J[2] = 5;
+			//int J[3] = { 3 , 4 , 5 }; 
+			}
 		if (j>=6){
-			m=5;}
+			J[0] = 6;
+			J[1] = 7; 
+			J[2] = 8;
+			//int J[3] = { 6 , 7 , 8 }; 
+			}
 		}
 	if (i>6){
+		I[0] = 6;
+		I[1] = 7; 
+		I[2] = 8;
+		//int I[3] = { 6 , 7 , 8 };
 		if (j<3){
-			m=6;}
+			J[0] = 0;
+			J[1] = 1; 
+			J[2] = 2;
+			//int J[3] = { 0 , 1 , 2 }; 
+			}
 		if ((j>=3)&&(j<6)){
-			m=7;}
+			J[0] = 3;
+			J[1] = 4; 
+			J[2] = 5;
+			//int J[3] = { 3 , 4 , 5 }; 
+			}
 		if (j>=6){
-			m=8;}
+			J[0] = 6;
+			J[1] = 7; 
+			J[2] = 8;
+			//int J[3] = { 6 , 7 , 8 }; 
+			}
+		
 		}
 		
-	/*
+	
 	//2. on vérifie la sous matrice 
-	while ((continu = 1))
-	{
-		for (int n=0; n<3; n++)
-			{
-			for (int g =0; g<3; g++)
-				{
-				if (grid[][]==k)
-					{
+	while ((continu = 1)){
+		
+		for (int n = I[0]; n < I[2]; n++){
+			for (int g = J[0]; g < J[2]; g++){
+				if (grid[n][g]==k){
 					continu = 0;}
+					}
+					}
+					}
+	return continu; 
+	}
+
+
+void full_grid(int grid[DIM][DIM])
+{
+	//On remplit notre grille au préalable avec des 0
+	for(int i=0;i<9;i++)
+	{
+		for(int j=0;j<9;j++)
+		{
+			grid[i][j]=0;
+		}
+	}
+	
+	// Diagonales independantes 
+	diagonales(grid);
+	
+	//Remplissage des autres sous-matrices case par case 
+	for ( int a = 0; a<DIM; a++){
+		for (int b = 0; b<DIM; b++){
+			int* liste=nb_alea();
+			int index=0;
+			while ( grid[a][b]==0 && index < DIM){
+				if ( is_correct(grid , a , b , liste[index]) ){
+					grid[a][b] = liste[index];
+					}
+				else {
+					index ++;
+					}
 				}
 			}
-	}
-	*/	
-}
-
-
-					
+			}
+}					
 				
 			
 
@@ -220,5 +292,15 @@ void show_grid(int grid[DIM][DIM])
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
 
 

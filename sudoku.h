@@ -6,7 +6,10 @@
 /* Génère une liste de nombres aléatoires */
 int* nb_alea() ;
 
-/* Initialise une grille avec des 0 puis rempli de façon aléatoire les trois matrices situées dans la diagonale */
+/*remplis les diagonales */
+void diagonales(int grid[DIM][DIM]) ; 
+
+/* Initialise une grille avec des 0 puis rempli de façon aléatoire les sous-matrices en commençant par les matrices de la diagonales  */
 void full_grid(int grid[DIM][DIM]) ;
 
 /* On retire de façon aléatoire un nombre fini k d'éléments dans la grille */

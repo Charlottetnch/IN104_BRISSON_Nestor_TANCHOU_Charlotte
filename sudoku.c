@@ -119,7 +119,7 @@ void seize_number(int grid[DIM][DIM])
 
 
 // on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille 
-void is_correct(int grid[DIM][DIM], int i, int j, int k)
+int is_correct(int grid[DIM][DIM], int i, int j, int k)
 {
 	int continu = 1 ; 
 	
@@ -241,7 +241,7 @@ void is_correct(int grid[DIM][DIM], int i, int j, int k)
 					}
 					}
 					}
-	return continu; 
+	return continu ; 
 	}
 
 

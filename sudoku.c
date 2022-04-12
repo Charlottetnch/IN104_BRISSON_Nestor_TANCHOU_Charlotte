@@ -152,7 +152,7 @@ int is_correct(int grid[DIM][DIM], int i, int j, int k)
 		}
 	
 	//ON VERIFIE LA MATRICE 
-	
+	/*
 	//1. il faut identifier la sous matrice {(0,1,2);(3,4,5);(6,7,8)}
 	int I[3];
 	int J[3];
@@ -240,7 +240,7 @@ int is_correct(int grid[DIM][DIM], int i, int j, int k)
 					continu = 0;}
 					}
 					}
-					}
+					}*/
 	return continu ; 
 	}
 
@@ -267,10 +267,15 @@ void full_grid(int grid[DIM][DIM])
 		{
 		int* liste=nb_alea();
 		int index=0;
+		
+		
 		while ( grid[a][b]==0 && index < DIM)
 			{
-			if ( is_correct(grid , a , b , liste[index]) )
+			
+
+			if ( is_correct(grid , a , b , liste[index]) ==1)
 				{
+				
 				grid[a][b] = liste[index];
 				}
 			else 
@@ -278,8 +283,10 @@ void full_grid(int grid[DIM][DIM])
 				index ++;
 				}
 			}
+			
 		}
 	}
+	
 	
 }					
 				

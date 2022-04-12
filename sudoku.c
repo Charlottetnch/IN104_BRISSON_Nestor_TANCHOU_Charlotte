@@ -49,17 +49,28 @@ void diagonales(int grid[DIM][DIM])
 
 
 
-void remove_elements(int grid[DIM][DIM], int k)
+void remove_elements(int grid[DIM][DIM])
 {
-	for(int i=0; i<k; i++)
+	printf("Veuillez choisir la difficulté du jeu : Facile(0), Intermédiaire(1), Difficile(2) : ");
+	int k;
+	scanf("%d",&k);
+	if(k>=0 && 2>=k)
 	{
+		for(int i=0; i<81-(10-k*2); i++)
+		{
 		int a=rand()%DIM; int b=rand()%DIM;
 		while(grid[a][b]==0)
-		{
-			a=rand()%DIM; 
-			b=rand()%DIM;
-		}
+			{
+				a=rand()%DIM; 
+				b=rand()%DIM;
+			}
 		grid[a][b]=0;
+		}
+	}
+	else
+	{
+		printf("Vérifiez que le nombre est bien compris entre 0 et 2\n");
+		remove_elements(grid);
 	}
 }
 
@@ -299,16 +310,28 @@ void full_grid(int grid[DIM][DIM])
 	
 }					
 				
-			
+
+int grid_completed(int grid[DIM][DIM])
+{
+	for(int i=0;i<DIM;i++)
+	{
+		for(int j=0;j<DIM;j++)
+		{
+			if(grid[i][j]==0) return 1;
+		}
+	}
+	return 0;
+}
 
 void show_grid(int grid[DIM][DIM])
 {
 	for(int i=0;i<9;i++)
 	{
+		if(i>0) printf("------------------\n");
 		for(int j=0;j<9;j++)
 		{
-			if(grid[i][j]==0) printf(" ");
-			else printf("%d",grid[i][j]);
+			if(grid[i][j]==0) printf(" |");
+			else printf("%d|",grid[i][j]);
 
 		}
 		printf("\n");

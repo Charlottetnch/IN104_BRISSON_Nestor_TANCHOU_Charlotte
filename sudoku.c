@@ -121,41 +121,39 @@ void seize_number(int grid[DIM][DIM])
 // on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille 
 int is_correct(int grid[DIM][DIM], int i, int j, int k)
 {
-	int continu = 1 ; 
+	int continu = 1 ;
+	//printf("continu = %d\n", continu) ;
 	
 	// ON VÉRIFIE LA LIGNE 
 	int c=0; 
-	while ((continu = 1)&&(c<9)){
-		if (c==j){
-			c++;
+	while ((continu == 1)&&(c<9)){
+		printf("c=%d\n", c);
+		printf("continu = %d\n", continu) ;
+		printf("%d\n", grid[i][c]);
+		if (c!=j && grid[i][c]==k){
+			printf("coucou\n");
+			continu = 0;
 			}
-		else {
-			c++;
-			if (grid[i][c]==k){
-				continu = 0;
-				}
-		}
+		c++;
 		}
 	
 	// ON VERIFIE LA COLONNE 
 	int l = 0; 
-	while ((continu = 1)&&(l<9)){
-		if (l==i){
-			l++;
+	while ((continu == 1)&&(l<9)){
+		printf("l=%d\n", l);
+		printf("continu = %d\n", continu) ;
+		printf("%d\n", grid[l][j]);
+		if (l!=i && grid[l][j]==k){
+			continu = 0 ; 
 			}
-		else {
-			l++;
-			if (grid[l][j]==k){
-				continu = 0;
-				}
-			}
+		l++;
 		}
 	
 	//ON VERIFIE LA MATRICE 
-	/*
-	//1. il faut identifier la sous matrice {(0,1,2);(3,4,5);(6,7,8)}
-	int I[3];
-	int J[3];
+	
+	//1. il faut identifier la sous matrice 
+	int I[3]={0,0,0};
+	int J[3]={0,0,0};
 	if (i<3){
 		I[0] = 0;
 		I[1] = 1; 
@@ -229,18 +227,29 @@ int is_correct(int grid[DIM][DIM], int i, int j, int k)
 			}
 		
 		}
-		
+	printf("I=[%d", I[0]);
+	printf(",%d,", I[1]);
+	printf("%d]\n", I[2]);	
+	printf("J=[%d", J[0]);
+	printf(",%d,", J[1]);
+	printf("%d]\n", J[2]);
 	
-	//2. on vérifie la sous matrice 
-	while ((continu = 1)){
+	//2. on vérifie la sous matrice
+	int ca = 1 ;  
+	while ((continu == 1)&&(ca<10)){
+		printf("continu = %d\n", continu);
 		
-		for (int n = I[0]; n < I[2]; n++){
-			for (int g = J[0]; g < J[2]; g++){
+		for (int n = I[0]; n <= I[2]; n++){
+			for (int g = J[0]; g <= J[2]; g++){
+				ca ++ ; 
+				printf("ca = %d\n", ca);
+				printf("n=%d\n",n);
+				printf("g=%d\n",g);
 				if (grid[n][g]==k){
 					continu = 0;}
 					}
 					}
-					}*/
+					}
 	return continu ; 
 	}
 
@@ -306,7 +315,6 @@ void show_grid(int grid[DIM][DIM])
 	}
 
 }
-
 
 
 

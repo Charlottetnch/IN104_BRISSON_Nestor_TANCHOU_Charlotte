@@ -260,20 +260,27 @@ void full_grid(int grid[DIM][DIM])
 	diagonales(grid);
 	
 	//Remplissage des autres sous-matrices case par case 
-	for ( int a = 0; a<DIM; a++){
-		for (int b = 0; b<DIM; b++){
-			int* liste=nb_alea();
-			int index=0;
-			while ( grid[a][b]==0 && index < DIM){
-				if ( is_correct(grid , a , b , liste[index]) ){
-					grid[a][b] = liste[index];
-					}
-				else {
-					index ++;
-					}
+	
+	for ( int a = 0; a<DIM; a++)
+	{
+		for (int b = 0; b<DIM; b++)
+		{
+		int* liste=nb_alea();
+		int index=0;
+		while ( grid[a][b]==0 && index < DIM)
+			{
+			if ( is_correct(grid , a , b , liste[index]) )
+				{
+				grid[a][b] = liste[index];
+				}
+			else 
+				{
+				index ++;
 				}
 			}
-			}
+		}
+	}
+	
 }					
 				
 			

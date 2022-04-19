@@ -9,6 +9,9 @@ int* nb_alea() ;
 /*remplit les diagonales */
 void diagonales(int grid[DIM][DIM]) ; 
 
+/*identifie les indices i et j qui correspondent à la sousmatrice*/
+void id_sous_matrice( int I[3], int J[3], int i, int j);
+
 /* Initialise une grille avec des 0 puis rempli de façon aléatoire les sous-matrices en commençant par les matrices de la diagonales  */
 void full_grid(int grid[DIM][DIM]) ;
 

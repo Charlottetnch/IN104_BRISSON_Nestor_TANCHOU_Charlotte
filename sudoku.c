@@ -127,43 +127,7 @@ void seize_number(int grid[DIM][DIM])
 				seize_number(grid);
 			}
 }
-
-
-// on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille 
-int is_correct(int grid[DIM][DIM], int i, int j, int k)
-{
-	int continu = 1 ;
-	//printf("continu = %d\n", continu) ;
-	
-	// ON VÉRIFIE LA LIGNE 
-	int c=0; 
-	while ((continu == 1)&&(c<9)){
-		/*printf("c=%d\n", c);
-		printf("continu = %d\n", continu) ;
-		printf("%d\n", grid[i][c]);*/
-		if (c!=j && grid[i][c]==k){
-			continu = 0;
-			}
-		c++;
-		}
-	
-	// ON VERIFIE LA COLONNE 
-	int l = 0; 
-	while ((continu == 1)&&(l<9)){
-		/*printf("l=%d\n", l);
-		printf("continu = %d\n", continu) ;
-		printf("%d\n", grid[l][j]);*/
-		if (l!=i && grid[l][j]==k){
-			continu = 0 ; 
-			}
-		l++;
-		}
-	
-	//ON VERIFIE LA MATRICE 
-	
-	//1. il faut identifier la sous matrice 
-	int I[3]={0,0,0};
-	int J[3]={0,0,0};
+void id_sous_matrice( int I[3], int J[3], int i, int j){
 	if (i<3){
 		I[0] = 0;
 		I[1] = 1; 
@@ -237,6 +201,45 @@ int is_correct(int grid[DIM][DIM], int i, int j, int k)
 			}
 		
 		}
+		}
+
+
+// on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille 
+int is_correct(int grid[DIM][DIM], int i, int j, int k)
+{
+	int continu = 1 ;
+	//printf("continu = %d\n", continu) ;
+	
+	// ON VÉRIFIE LA LIGNE 
+	int c=0; 
+	while ((continu == 1)&&(c<9)){
+		/*printf("c=%d\n", c);
+		printf("continu = %d\n", continu) ;
+		printf("%d\n", grid[i][c]);*/
+		if (c!=j && grid[i][c]==k){
+			continu = 0;
+			}
+		c++;
+		}
+	
+	// ON VERIFIE LA COLONNE 
+	int l = 0; 
+	while ((continu == 1)&&(l<9)){
+		/*printf("l=%d\n", l);
+		printf("continu = %d\n", continu) ;
+		printf("%d\n", grid[l][j]);*/
+		if (l!=i && grid[l][j]==k){
+			continu = 0 ; 
+			}
+		l++;
+		}
+	
+	//ON VERIFIE LA MATRICE 
+	
+	//1. il faut identifier la sous matrice 
+	int I[3]={0,0,0};
+	int J[3]={0,0,0};
+	id_sous_matrice(I, J, i, j);
 	/*printf("I=[%d", I[0]);
 	printf(",%d,", I[1]);
 	printf("%d]\n", I[2]);	
@@ -297,37 +300,49 @@ void full_grid(int grid[DIM][DIM])
 	show_grid(grid);
 	
 	//Remplissage des autres sous-matrices case par case 
-	
-	for ( int a = 0; a<DIM; a++)
-	{
-		for (int b = 0; b<DIM; b++)
-		{
-		int* liste=nb_alea();
-		int index=0;
-		
-		
-		while ( grid[a][b]==0 && index < DIM)
-			{
-			show_grid(grid);
-			printf("a=%d\n",a);
-			printf("b=%d\n",b);
-			printf("on essaye %d\n",liste[index]);
-			if ( is_correct(grid , a , b , liste[index]) ==1)
-				{
-				
-				grid[a][b] = liste[index];
-				}
-			else 
-				{
-				index ++;
+	for ( int a = 0; a<3 ; a++){
+		for ( int b = 0; b<3 ; b++){
+			printf("coucou\n");
+			int I[3]={0,0,0};
+			int J[3]={0,0,0};
+			id_sous_matrice(I, J, a*3, b*3);
+			
+			printf("I=[%d", I[0]);
+			printf(",%d,", I[1]);
+			printf("%d]\n", I[2]);	
+			printf("J=[%d", J[0]);
+			printf(",%d,", J[1]);
+			printf("%d]\n", J[2]);
+			
+			for (int k = I[0]; k<=I[2] ; k++ ){
+				for( int l = J[0]; l<=J[2] ; l++ ){
+					printf("%d\n", k);
+					printf("%d\n", l);
+					int* liste = nb_alea();
+					int index = 0; 
+					printf("coucou2\n");
+					show_grid(grid);
+					while ( grid[k][l] == 0 && index < DIM ){
+						if ( is_correct(grid, k, l, liste[index]) == 1){
+							grid[k][l] = liste[index];}
+						else {
+							index ++; }
+						if ( index == 8 && grid[k][l] == 0){
+							// si la permutaion ne fonctionne pas, on remet la sous-matrice à 0 et on en essaye une nouvelle 
+							for (int m = I[0]; m<=I[2] ; m++ ){
+								for( int n = J[0]; n<=J[2] ; n++ ){
+									grid[m][n] = 0 ; 
+									k = I[0];
+									l = J[0];
+									}}
+						}
+					}
 				}
 			}
-			
 		}
 	}
-	
-	
-}					
+}
+														
 				
 
 int grid_completed(int grid[DIM][DIM])

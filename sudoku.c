@@ -4,7 +4,7 @@
 #include <time.h>
 #define DIM 9
 
-
+//il faut changer la methode de remplissage de la matrice : la on remplit ligne par ligne et quand il ne reste plus qu'un chiffre dispo pour la ligne qui existe déjà dans la colonne  
 
 int* nb_alea()
 {
@@ -129,7 +129,41 @@ void seize_number(int grid[DIM][DIM])
 }
 
 
-void id_sous_matrice (int I[3], c){
+// on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille 
+int is_correct(int grid[DIM][DIM], int i, int j, int k)
+{
+	int continu = 1 ;
+	//printf("continu = %d\n", continu) ;
+	
+	// ON VÉRIFIE LA LIGNE 
+	int c=0; 
+	while ((continu == 1)&&(c<9)){
+		/*printf("c=%d\n", c);
+		printf("continu = %d\n", continu) ;
+		printf("%d\n", grid[i][c]);*/
+		if (c!=j && grid[i][c]==k){
+			continu = 0;
+			}
+		c++;
+		}
+	
+	// ON VERIFIE LA COLONNE 
+	int l = 0; 
+	while ((continu == 1)&&(l<9)){
+		/*printf("l=%d\n", l);
+		printf("continu = %d\n", continu) ;
+		printf("%d\n", grid[l][j]);*/
+		if (l!=i && grid[l][j]==k){
+			continu = 0 ; 
+			}
+		l++;
+		}
+	
+	//ON VERIFIE LA MATRICE 
+	
+	//1. il faut identifier la sous matrice 
+	int I[3]={0,0,0};
+	int J[3]={0,0,0};
 	if (i<3){
 		I[0] = 0;
 		I[1] = 1; 
@@ -203,46 +237,6 @@ void id_sous_matrice (int I[3], c){
 			}
 		
 		}
-
-}
-
-// on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille 
-int is_correct(int grid[DIM][DIM], int i, int j, int k)
-{
-	int continu = 1 ;
-	//printf("continu = %d\n", continu) ;
-	
-	// ON VÉRIFIE LA LIGNE 
-	int c=0; 
-	while ((continu == 1)&&(c<9)){
-		/*printf("c=%d\n", c);
-		printf("continu = %d\n", continu) ;
-		printf("%d\n", grid[i][c]);*/
-		if (c!=j && grid[i][c]==k){
-			continu = 0;
-			}
-		c++;
-		}
-	
-	// ON VERIFIE LA COLONNE 
-	int l = 0; 
-	while ((continu == 1)&&(l<9)){
-		/*printf("l=%d\n", l);
-		printf("continu = %d\n", continu) ;
-		printf("%d\n", grid[l][j]);*/
-		if (l!=i && grid[l][j]==k){
-			continu = 0 ; 
-			}
-		l++;
-		}
-	
-	//ON VERIFIE LA MATRICE 
-	
-	//1. il faut identifier la sous matrice 
-	int I[3]={0,0,0};
-	int J[3]={0,0,0};
-	id_sous_matrice ( I, J, i, j);
-
 	/*printf("I=[%d", I[0]);
 	printf(",%d,", I[1]);
 	printf("%d]\n", I[2]);	
@@ -286,6 +280,7 @@ void show_grid(int grid[DIM][DIM])
 
 }
 
+
 void full_grid(int grid[DIM][DIM])
 {
 	//On remplit notre grille au préalable avec des 0
@@ -313,10 +308,10 @@ void full_grid(int grid[DIM][DIM])
 		
 		while ( grid[a][b]==0 && index < DIM)
 			{
-			//show_grid(grid);
-			//printf("a=%d\n",a);
-			//printf("b=%d\n",b);
-			//printf("on essaye %d\n",liste[index]);
+			show_grid(grid);
+			printf("a=%d\n",a);
+			printf("b=%d\n",b);
+			printf("on essaye %d\n",liste[index]);
 			if ( is_correct(grid , a , b , liste[index]) ==1)
 				{
 				
@@ -326,28 +321,13 @@ void full_grid(int grid[DIM][DIM])
 				{
 				index ++;
 				}
-			}	
-			if ( grid[a][b]==0 ){
-			// au cas ou aucun des chiffres dispo fonctionne on réinitialise la lligne et on recommence
-			b = 0; 
-			if ( a<=2 ) {
-				for ( int i = 3; i<DIM; i++){
-					grid[a][i] = 0;}
-				}				
-			if ( a>2 && a<=5 ) {
-				for ( int i = 0 ; i<3 ; i++){
-					grid[a][i] = 0;}
-				for ( int i = 6 ; i<DIM ; i++){
-					grid[a][i] = 0;}
-				}
-			if (a>5){
-				for ( int i = 0 ; i<6 ; i++){
-					grid[a][i] = 0;}
-					}				}
+			}
+			
+		}
 	}
-	}	
-}
-					
+	
+	
+}					
 				
 
 int grid_completed(int grid[DIM][DIM])
@@ -362,7 +342,22 @@ int grid_completed(int grid[DIM][DIM])
 	return 0;
 }
 
+/*void show_grid(int grid[DIM][DIM])
+{
+	for(int i=0;i<9;i++)
+	{
+		if(i%3==0 && i!=0) printf("------------\n");
+		for(int j=0;j<9;j++)
+		{
+			if(grid[i][j]==0) printf(" ");
+			else printf("%d",grid[i][j]);
+			if((j+1)%3==0) printf("|");
 
+		}
+		printf("\n");
+	}
+
+}*/
 
 
 

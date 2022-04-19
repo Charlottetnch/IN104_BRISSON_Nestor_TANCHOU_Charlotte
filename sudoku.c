@@ -4,7 +4,7 @@
 #include <time.h>
 #define DIM 9
 
-
+//il faut changer la methode de remplissage de la matrice : la on remplit ligne par ligne et quand il ne reste plus qu'un chiffre dispo pour la ligne qui existe déjà dans la colonne  
 
 int* nb_alea()
 {
@@ -138,11 +138,10 @@ int is_correct(int grid[DIM][DIM], int i, int j, int k)
 	// ON VÉRIFIE LA LIGNE 
 	int c=0; 
 	while ((continu == 1)&&(c<9)){
-		printf("c=%d\n", c);
+		/*printf("c=%d\n", c);
 		printf("continu = %d\n", continu) ;
-		printf("%d\n", grid[i][c]);
+		printf("%d\n", grid[i][c]);*/
 		if (c!=j && grid[i][c]==k){
-			printf("coucou\n");
 			continu = 0;
 			}
 		c++;
@@ -151,9 +150,9 @@ int is_correct(int grid[DIM][DIM], int i, int j, int k)
 	// ON VERIFIE LA COLONNE 
 	int l = 0; 
 	while ((continu == 1)&&(l<9)){
-		printf("l=%d\n", l);
+		/*printf("l=%d\n", l);
 		printf("continu = %d\n", continu) ;
-		printf("%d\n", grid[l][j]);
+		printf("%d\n", grid[l][j]);*/
 		if (l!=i && grid[l][j]==k){
 			continu = 0 ; 
 			}
@@ -238,24 +237,24 @@ int is_correct(int grid[DIM][DIM], int i, int j, int k)
 			}
 		
 		}
-	printf("I=[%d", I[0]);
+	/*printf("I=[%d", I[0]);
 	printf(",%d,", I[1]);
 	printf("%d]\n", I[2]);	
 	printf("J=[%d", J[0]);
 	printf(",%d,", J[1]);
-	printf("%d]\n", J[2]);
+	printf("%d]\n", J[2]);*/
 	
 	//2. on vérifie la sous matrice
 	int ca = 1 ;  
 	while ((continu == 1)&&(ca<10)){
-		printf("continu = %d\n", continu);
+		//printf("continu = %d\n", continu);
 		
 		for (int n = I[0]; n <= I[2]; n++){
 			for (int g = J[0]; g <= J[2]; g++){
 				ca ++ ; 
-				printf("ca = %d\n", ca);
+				/*printf("ca = %d\n", ca);
 				printf("n=%d\n",n);
-				printf("g=%d\n",g);
+				printf("g=%d\n",g);*/
 				if (grid[n][g]==k){
 					continu = 0;}
 					}
@@ -263,6 +262,22 @@ int is_correct(int grid[DIM][DIM], int i, int j, int k)
 					}
 	return continu ; 
 	}
+
+void show_grid(int grid[DIM][DIM])
+{
+	for(int i=0;i<9;i++)
+	{
+		if(i>0) printf("------------------\n");
+		for(int j=0;j<9;j++)
+		{
+			if(grid[i][j]==0) printf(" |");
+			else printf("%d|",grid[i][j]);
+
+		}
+		printf("\n");
+	}
+
+}
 
 
 void full_grid(int grid[DIM][DIM])
@@ -278,6 +293,7 @@ void full_grid(int grid[DIM][DIM])
 	
 	// Diagonales independantes 
 	diagonales(grid);
+	show_grid(grid);
 	
 	//Remplissage des autres sous-matrices case par case 
 	
@@ -291,8 +307,10 @@ void full_grid(int grid[DIM][DIM])
 		
 		while ( grid[a][b]==0 && index < DIM)
 			{
-			
-
+			show_grid(grid);
+			printf("a=%d\n",a);
+			printf("b=%d\n",b);
+			printf("on essaye %d\n",liste[index]);
 			if ( is_correct(grid , a , b , liste[index]) ==1)
 				{
 				
@@ -323,7 +341,7 @@ int grid_completed(int grid[DIM][DIM])
 	return 0;
 }
 
-void show_grid(int grid[DIM][DIM])
+/*void show_grid(int grid[DIM][DIM])
 {
 	for(int i=0;i<9;i++)
 	{
@@ -338,7 +356,7 @@ void show_grid(int grid[DIM][DIM])
 		printf("\n");
 	}
 
-}
+}*/
 
 
 

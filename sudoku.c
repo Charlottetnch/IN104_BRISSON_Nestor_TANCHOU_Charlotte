@@ -366,11 +366,12 @@ int grid_completed(int grid[DIM][DIM])
 {
 	for(int i=0;i<9;i++)
 	{
-		if(i>0) printf("------------------\n");
+		if(i%3==0 && i!=0) printf("------------\n");
 		for(int j=0;j<9;j++)
 		{
-			if(grid[i][j]==0) printf(" |");
-			else printf("%d|",grid[i][j]);
+			if(grid[i][j]==0) printf(" ");
+			else printf("%d",grid[i][j]);
+			if((j+1)%3==0) printf("|");
 
 		}
 		printf("\n");

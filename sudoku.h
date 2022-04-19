@@ -19,6 +19,9 @@ void remove_elements(int grid[DIM][DIM]);
 /* Demande au joueur de remplir la grille*/
 void seize_number(int grid[DIM][DIM]);
 
+/*identifie la sous matrice*/
+void id_sous_matrice( int I[3], int J[3], int i, int j);
+
 /* on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille */
 void is_correct(int grid[DIM][DIM], int i, int j, int k);
 

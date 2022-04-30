@@ -50,12 +50,13 @@ void diagonales(int grid[DIM][DIM])
 
 
 void remove_elements(int grid[DIM][DIM])
-{
+{	
+	/* Pour vérifier que la fonction de vérification de la grille finale fonctionne 
 	printf("Veuillez choisir la difficulté du jeu : Facile(0), Intermédiaire(1), Difficile(2) : ");	
 	int a=rand()%DIM; int b=rand()%DIM;
-	grid[a][b] = 0;
+	grid[a][b] = 0;*/
 	
-	/*int k;
+	int k;
 	scanf("%d",&k);
 	if(k>=0 && 2>=k)
 	{
@@ -74,7 +75,7 @@ void remove_elements(int grid[DIM][DIM])
 	{
 		printf("Vérifiez que le nombre est bien compris entre 0 et 2\n");
 		remove_elements(grid);
-	}*/
+	}
 }
 
 

@@ -4,7 +4,7 @@
 #include <time.h>
 #include "sudoku.h"
 //#include "morpion.h"
-
+#define DIM 9
 
 
 
@@ -18,10 +18,18 @@ int main()
 	test=scanf("%d",&game);
 	if(test==1 && game==1)
 		{
-			srand(time(NULL));
+		srand(time(NULL));
 		int grid[DIM][DIM];
 
 		full_grid(grid);
+		
+		int grille_finale[DIM][DIM];
+		for (int i = 0; i<DIM; i++){
+			for (int j = 0; j<DIM; j++){
+				grille_finale[i][j]=grid[i][j];
+				}
+			}
+		 
 		remove_elements(grid);
 		show_grid(grid);
 	
@@ -31,7 +39,25 @@ int main()
 				seize_number(grid);
 				show_grid(grid);
 			}
-	
+		
+			
+		int fini = 0 ; 
+		for (int k = 0; k<DIM; k++){
+			for ( int l = 0; l<DIM; l++){
+				if (grid[k][l]!=grille_finale[k][l]){
+					fini = 1; 
+					break ; 
+					}
+				}
+			}
+		
+		
+		if (fini == 0){
+			printf("Bien joué, le sudoku est terminé\n");
+			}
+		else {
+			printf("Recommence\n");}
+			
 		return 0;
 		}
 

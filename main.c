@@ -14,7 +14,7 @@ int main()
 	int test;
 	printf("\nVeuillez choisir votre jeu : ");
 	printf("\n(1) Sudoku ");
-	printf("\n(2) Morpion\n ");
+	printf("\n(2) Pacman\n ");
 	test=scanf("%d",&game);
 	if(test==1 && game==1)
 		{

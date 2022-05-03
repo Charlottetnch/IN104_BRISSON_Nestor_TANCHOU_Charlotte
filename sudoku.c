@@ -51,10 +51,10 @@ void diagonales(int grid[DIM][DIM])
 
 void remove_elements(int grid[DIM][DIM])
 {	
-	/* Pour vérifier que la fonction de vérification de la grille finale fonctionne 
+	//Pour vérifier que la fonction de vérification de la grille finale fonctionne 
 	printf("Veuillez choisir la difficulté du jeu : Facile(0), Intermédiaire(1), Difficile(2) : ");	
 	int a=rand()%DIM; int b=rand()%DIM;
-	grid[a][b] = 0;*/
+	grid[a][b] = 0;
 	
 	int k;
 	scanf("%d",&k);

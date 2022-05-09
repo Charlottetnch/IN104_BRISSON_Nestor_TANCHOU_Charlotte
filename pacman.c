@@ -3,9 +3,14 @@
 #include <stdbool.h> 
 #include <time.h>
 #include <string.h>
+//#include <curses.h>
+//On doit ajouter -lcurses pour compiler avec gcc  (pour le getch())
 #define H 30
 #define W 60
 #define GHOSTS 5
+
+
+
 
 struct coordinates{int x;
 			 	   int y;};
@@ -96,24 +101,31 @@ void init_area ()
 void instructions(struct pacman* pacman,char area[H][W],struct ghost* list_ghost)
 {
 	char key;
+
 	scanf(" %c",&key);
-	if(key=='e')
-		{
-			pacman->p_ny=1; pacman->p_nx=0;
-		}	
-	if(key=='x')
-		{
-			pacman->p_ny=-1; pacman->p_nx=0;
-		}	
-	if(key=='s')
-		{
-			pacman->p_nx=-1; pacman->p_ny=0;
-		}	
-		
-	if(key=='d')
-		{
-			pacman->p_nx=1; pacman->p_ny=0;
-		}
+	
+		if(key=='e')
+			{
+				printf("%c",key);
+				pacman->p_ny=1; pacman->p_nx=0;
+				
+			}	
+		if(key=='x')
+			{
+				pacman->p_ny=-1; pacman->p_nx=0;
+				
+			}	
+		if(key=='s')
+			{
+				pacman->p_nx=-1; pacman->p_ny=0;
+				
+			}	
+			
+		if(key=='d')
+			{
+				pacman->p_nx=1; pacman->p_ny=0;
+				
+			}
 	
 	for ( int i=0;i<GHOSTS;i++)  
 	{	
@@ -134,6 +146,14 @@ void instructions(struct pacman* pacman,char area[H][W],struct ghost* list_ghost
 			}
 		}
 	}	
+	for(int i=0;i<H;i++)		{
+		printf("\n");
+		for(int j=0;j<W;j++)
+		{
+			printf("%c",area[i][j]);
+		}
+	}
+	printf("\n");
 	
 }
 
@@ -153,10 +173,6 @@ void init_ghost(char area[H][W],struct ghost* list_ghost)
 	}
 	printf("\n");
 	
-	
-	
-
-
 	
 	for ( int i=0;i<GHOSTS;i++)  
 	{	
@@ -207,7 +223,7 @@ void init_ghost(char area[H][W],struct ghost* list_ghost)
 
 int main()
 {
-	/*
+	srand(time(NULL));
 	struct pacman* pacman=initiate_pacman();
 	struct ghost* list_ghost=initiate_ghost();
 	//srand(time(NULL));
@@ -247,15 +263,6 @@ int main()
 	init_ghost(area,list_ghost);
 	instructions(pacman,area,list_ghost);
 	return 1;
-	*/
-
-
-   char ch;
-   printf("Appuyez sur une touche pour continuer.\n"); 
-   // Attend un appui sur une touche
-   ch = getch();
-   printf ("Vous avez appuyé sur la touche %c.\n", ch);
-   return 0;
 
 }
 

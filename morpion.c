@@ -125,6 +125,7 @@ void test_affichage() {
 }
 
 /* Programme principal */
+/*
 int main() {
     // On crée une grille vide
     int* grille = creer_grille();
@@ -171,3 +172,4 @@ int main() {
     // On libère la mémoire de la grille
     free(grille);
 }
+*/

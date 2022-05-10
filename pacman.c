@@ -131,25 +131,53 @@ void instructions(struct pacman* pacman,char area[H][W],struct ghost* list_ghost
 			}
 	
 	for ( int i=0;i<GHOSTS;i++)  
-	{	
+	{
+		area[list_ghost[i].g_nx][list_ghost[i].g_ny] = '.';
 		int go_on = 1 ; 
 		while ( go_on == 1 )
 		{
-			int nx = rand()%W; 
-			int ny = rand()%H;		
+			int k = rand()%3; 
+			int j = rand()%3;
+			int nx;
+			int ny;	
+			
+			if (k == 0 && list_ghost[i].g_nx != 0)
+			{
+				nx = list_ghost[i].g_nx -1 ; 
+			}
+			else if (k == 1 && list_ghost[i].g_nx != W-1 ) 
+			{
+				nx = list_ghost[i].g_nx +1;
+			}
+			else 
+			{
+				nx = list_ghost[i].g_nx ; 
+			}
+			
+			if (j == 0 && list_ghost[i].g_ny != 0 )
+			{
+				ny = list_ghost[i].g_ny -1 ; 
+			}
+			else if (i == 1 && list_ghost[i].g_ny != H-1)
+			{
+				ny = list_ghost[i].g_ny +1;
+			}
+			else 
+			{
+				ny = list_ghost[i].g_ny ; 
+			}	
 			if ( area[nx][ny]=='.')
 			{	
-				if (nx!=1 || ny!=1)
-				{	
-					go_on = 0;
-					list_ghost[i].g_nx = nx;
-					list_ghost[i].g_ny = ny;
-					area[nx][ny] = 'G';
-				}
+				go_on = 0;
+				list_ghost[i].g_nx = nx ; 
+				list_ghost[i].g_ny = ny ; 
+				area[nx][ny] = 'G';	
 			}
-		}
+			
+	}
 	}	
-	for(int i=0;i<H;i++)		{
+	for(int i=0;i<H;i++)		
+	{
 		printf("\n");
 		for(int j=0;j<W;j++)
 		{
@@ -159,6 +187,7 @@ void instructions(struct pacman* pacman,char area[H][W],struct ghost* list_ghost
 	printf("\n");
 	
 }
+
 
 
 

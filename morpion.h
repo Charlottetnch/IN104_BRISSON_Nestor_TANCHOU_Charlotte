@@ -1,26 +1,26 @@
-#ifndef __SODOKU_H__
-#define __SODOKU_H__
-#define DIM 9
+#ifndef __MORPION_H__
+#define __MORPION_H__
 
 
-/* Génère une liste de nombres aléatoires */
-int* nb_alea() ;
 
-/*remplit les diagonales */
-void diagonales(int grid[DIM][DIM]) ; 
+/* Génère une grille de morpion*/
+int* creer_grille() ;
 
-/* Initialise une grille avec des 0 puis rempli de façon aléatoire les sous-matrices en commençant par les matrices de la diagonales  */
-void full_grid(int grid[DIM][DIM]) ;
+/*Permet d'afficher la grille au fur et à mesure' */
+void afficher(int* grille) ; 
 
-/* On retire de façon aléatoire un nombre fini k d'éléments dans la grille */
+/* Permet au joueur de choisir l'endroit où il souhaite jouer */
+void placer(int* grille, int chiffre, int joueur);
 
-void remove_elements(int grid[DIM][DIM]);
+/* L'ordinateur joue de façon aléatoire dans la grille*/
 
-/* Demande au joueur de remplir la grille*/
-void seize_number(int grid[DIM][DIM]);
+void placer_alea(int* grille, int joueur);
 
-/* on créé une fonction qui vérifie que le nombre ajouté à la case (i,j) fonctionne avec la grille */
-void is_correct(int grid[DIM][DIM], int i, int j, int k);
+/* Regarde si le joueur a gagné ou non*/
+int a_gagne(int* grille, int joueur) ;
+
+/* Regarde si la grille est complète ou non */
+int est_plein(int* grille);
 
 //Renvoie 0 si la grille a été entièrement remplie, 1 sinon
 int grid_completed(int grid[DIM][DIM]);

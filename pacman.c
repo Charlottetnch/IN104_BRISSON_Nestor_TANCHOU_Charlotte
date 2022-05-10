@@ -242,7 +242,7 @@ void init_ghost(char area[H][W],struct ghost* list_ghost)
 	}
 }
 */
-//lalala
+//lala
 
 
 /*

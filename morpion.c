@@ -114,6 +114,7 @@ int est_plein(int* grille) {
 }
 
 /* Fonction de test */
+/*
 void test_affichage() {
      int* grille = creer_grille();
      afficher(grille);
@@ -123,53 +124,5 @@ void test_affichage() {
      // On libère la mémoire de la grille
      free(grille);
 }
-
-/* Programme principal */
-/*
-int main() {
-    // On crée une grille vide
-    int* grille = creer_grille();
-    // Variable booléenne représentant si la partie est
-    // finie ou pas
-    int finie = 0;
-    // Nombre de tours joués
-    int tours = 0;
-    // Boucle principale:
-    // L'humain entre le chiffre, on place le symbole,
-    // puis on place le symbole du joueur ordinateur,
-    // puis on teste si c'est fini.
-    while (!finie) {
-        // augmenter le nombre de tours
-        tours = tours + 1;
-        // afficher la grille
-        afficher(grille);
-        // saisir le chiffre du joueur humain
-        int c;
-        printf("chiffre : ");
-        scanf("%d",&c);
-        // placer le symbole du joueur humain
-        placer(grille,c,1);
-        // placer le symbole du joueur ordinateur,
-        // si la grille n'est pas pleine
-        if (!est_plein(grille)) {
-            placer_alea(grille,2);
-        }
-        // c'est fini si un des deux joueurs a gagné,
-        // ou la grille est pleine
-        finie = a_gagne(grille,1) || a_gagne(grille,2) || est_plein(grille);
-    }
-    // afficher la grille à la fin du jeu,
-    // et afficher qui a gagné ou si match nul
-    afficher(grille);
-    if (a_gagne(grille,1)) {
-        printf("Gagné en %d tours.\n",tours);
-    }
-    else if (a_gagne(grille,2)) {
-        printf("Perdu en %d tours.\n",tours);
-    } else {
-        printf("Match nul en %d tours.\n",tours);
-    }
-    // On libère la mémoire de la grille
-    free(grille);
-}
 */
+

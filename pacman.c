@@ -5,6 +5,7 @@
 #include <string.h>
 
 
+
 //#include <curses.h>
 //On doit ajouter -lcurses pour compiler avec gcc  (pour le getch())
 #define H 30
@@ -243,11 +244,12 @@ void move_pacman(struct pacman* pacman,char area[H][W])
 }
 
 
-void check_lives(struct pacman* pacman, char area[H][W])
+int check_lives(struct pacman* pacman, char area[H][W])
 {
 	if (pacman->lives <0)
 	{
-		fprintf("score : %d food collected\n", pacman->food );
+		printf("score : %d food collected\n", pacman->food );
+		return 1;
 	}
 	else 
 	{
@@ -260,6 +262,7 @@ void check_lives(struct pacman* pacman, char area[H][W])
 			}
 		}
 		printf("\n");
+		return 0;
 	}
 }	 
 	
@@ -349,7 +352,11 @@ int main()
 	};
 	//init_area();
 	init_ghost(area,list_ghost);
-	instructions(pacman,area,list_ghost);
+	while(check_lives(pacman,area)==0)
+	{
+		instructions(pacman,area,list_ghost);
+		system ("clear");
+	}
 	return 1;
 
 }

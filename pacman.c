@@ -220,7 +220,7 @@ void init_ghost(char area[H][W],struct ghost* list_ghost)
 
 
 
-
+/*
 int main()
 {
 	srand(time(NULL));
@@ -265,4 +265,5 @@ int main()
 	return 1;
 
 }
+*/
 

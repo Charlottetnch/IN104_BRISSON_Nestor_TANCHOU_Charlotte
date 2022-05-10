@@ -221,7 +221,7 @@ void init_ghost(char area[H][W],struct ghost* list_ghost)
 
 
 
-void move_pacman(struct pacman* pacman,char area[H][W])
+/*void move_pacman(struct pacman* pacman,char area[H][W])
 {
 	int test_x=pacman->p_coor.x+pacman->p_nx;
 	int test_y=pacman->p_coor.y+pacman->p_ny;
@@ -241,7 +241,8 @@ void move_pacman(struct pacman* pacman,char area[H][W])
 		pacman->food+=1;
 	}
 }
-
+*/
+//lalala
 
 
 /*

@@ -1,6 +1,5 @@
 CC=gcc 
 CFLAGS=-W -Wall -Werror -Wfatal-errors
-LDFLAGS= 
 EXEC=Super_jeu
 SRC=$(wildcard *.c)
 HFILES=$(wildcard *.h)
@@ -9,7 +8,7 @@ OBJ= $(SRC:.c=.o)
 all: $(EXEC) 
 
 $(EXEC): $(OBJ) 
-	$(CC) -o $(EXEC) $(OBJ) $(LDFLAGS) 
+	$(CC) -o $(EXEC) $(OBJ) 
 	
 main.o: $(HFILES)
 

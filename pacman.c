@@ -221,7 +221,7 @@ void init_ghost(char area[H][W],struct ghost* list_ghost)
 
 
 
-/*void move_pacman(struct pacman* pacman,char area[H][W])
+void move_pacman(struct pacman* pacman,char area[H][W])
 {
 	int test_x=pacman->p_coor.x+pacman->p_nx;
 	int test_y=pacman->p_coor.y+pacman->p_ny;
@@ -241,10 +241,28 @@ void init_ghost(char area[H][W],struct ghost* list_ghost)
 		pacman->food+=1;
 	}
 }
-*/
-//lala
 
 
+void check_lives(struct pacman* pacman, char area[H][W])
+{
+	if (pacman->lives <0)
+	{
+		fprintf("score : %d food collected\n", pacman->food );
+	}
+	else 
+	{
+		for(int i=0;i<H;i++)
+		{
+			printf("\n");
+			for(int j=0;j<W;j++)
+			{
+				printf("%c",area[i][j]);
+			}
+		}
+		printf("\n");
+	}
+}	 
+	
 /*
 void set_cursor_position(int x, int y)
 {
@@ -290,7 +308,7 @@ int main()
 */
 
 
-/*
+
 int main()
 {
 	srand(time(NULL));
@@ -336,4 +354,4 @@ int main()
 
 }
 
-*/
+

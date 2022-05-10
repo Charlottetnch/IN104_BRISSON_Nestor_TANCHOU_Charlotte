@@ -3,6 +3,8 @@
 #include <stdbool.h> 
 #include <time.h>
 #include <string.h>
+
+
 //#include <curses.h>
 //On doit ajouter -lcurses pour compiler avec gcc  (pour le getch())
 #define H 30
@@ -219,6 +221,73 @@ void init_ghost(char area[H][W],struct ghost* list_ghost)
 
 
 
+void move_pacman(struct pacman* pacman,char area[H][W])
+{
+	int test_x=pacman->p_coor.x+pacman->p_nx;
+	int test_y=pacman->p_coor.y+pacman->p_ny;
+	//On regarde si notre pacman reste dans l'aire de jeu quand on met à jour ses coordonnées
+	if(test_x<=0 || test_x>=W || test_y<=0 || test_y>=H)
+	{
+		//Si ce n'est pas le cas, on lui enlève une vie et on le remet en (1,1)
+		pacman->lives=pacman->lives-1;
+		pacman->p_coor.x=1;
+		pacman->p_coor.y=1;
+	}
+	else
+	{
+		//Si c'est bon on met à jour les coordonnées
+		pacman->p_coor.x=pacman->p_coor.x+pacman->p_nx;
+		pacman->p_coor.y=pacman->p_coor.y+pacman->p_ny;
+		pacman->food+=1;
+	}
+}
+
+
+
+/*
+void set_cursor_position(int x, int y)
+{
+   //Initialize the coordinates
+   struct coordinates coord = { x, y };
+   //Set the position
+   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+ 
+}
+
+
+void hidecursor()
+{
+   HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+   CONSOLE_CURSOR_INFO info;
+   info.dwSize = 100;
+   info.bVisible = FALSE;
+   SetConsoleCursorInfo(consoleHandle, &info);
+}
+
+
+int main()
+{
+   system("cls");
+ 
+ 
+ 
+   hidecursor();
+   function_in_bulletpoint_8();
+ 
+   while (1)
+   {
+      function_in_bulletpoint_9();
+      function_in_bulletpoint_10()();
+      function_in_bulletpoint_11();
+ 
+      Sleep( 1000 / 30 );
+      set_cursor_position(0,0);
+   }
+ 
+}
+
+*/
+
 
 /*
 int main()
@@ -265,5 +334,5 @@ int main()
 	return 1;
 
 }
-*/
 
+*/

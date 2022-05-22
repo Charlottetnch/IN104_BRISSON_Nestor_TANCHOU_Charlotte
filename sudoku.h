@@ -31,6 +31,9 @@ int grid_completed(int grid[DIM][DIM]);
 /* Fonction qui permet d'afficher la grille */
 void show_grid(int grid[DIM][DIM]);
 
+/*Fonction qui permet de vérifier si la grille finale est correcte*/
+void check_grid(int grid[DIM][DIM],int final_grid[DIM][DIM]);
+
 
 
 #endif

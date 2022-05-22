@@ -4,6 +4,7 @@
 #include <time.h>
 #include "sudoku.h"
 #include "morpion.h"
+#include "pacman.h"
 #define DIM 9
 
 
@@ -14,7 +15,7 @@ int main()
 	int test;
 	printf("\nVeuillez choisir votre jeu : ");
 	printf("\n(1) Sudoku ");
-	printf("\n(2) Morpion\n ");
+	printf("\n(2) Morpion ");
 	printf("\n(3) Pacman\n ");
 	test=scanf("%d",&game);
 	if(test==1 && game==1)
@@ -39,28 +40,15 @@ int main()
 			{
 				seize_number(grid);
 				show_grid(grid);
+				check_grid(grid,grille_finale);
+
 			}
-		
-			
-		int fini = 0 ; 
-		for (int k = 0; k<DIM; k++){
-			for ( int l = 0; l<DIM; l++){
-				if (grid[k][l]!=grille_finale[k][l]){
-					fini = 1; 
-					break ; 
-					}
-				}
-			}
-		
-		
-		if (fini == 0){
-			printf("Bien joué, le sudoku est terminé\n");
-			}
-		else {
-			printf("Recommence\n");}
-			
-		return 0;
+
 		}
+	
+
+
+
 	else if(test==1 && game==2)
 	{
 		// On crée une grille vide
@@ -107,9 +95,68 @@ int main()
     }
     // On libère la mémoire de la grille
     free(grille);
+    return 0;
 	}
-
 	
+
+
+
+
+	else if(test==1 && game==3)
+	{
+		srand(time(NULL));
+	struct pacman* pacman=initiate_pacman();
+	struct ghost* list_ghost=initiate_ghost();
+	//srand(time(NULL));
+	char area[H][W] = {
+   { "############################################################" },
+   { "#                                                          #" },
+   { "#                                                          #" },
+   { "#        # # # # #          #             # # # # # #      #" },
+   { "#        #       #         # #            #                #" },
+   { "#        #       #        #   #           #                #" },
+   { "#        # # # # #       #     #          #                #" },
+   { "#        #              # # # # #         #                #" },
+   { "#        #             #         #        #                #" },
+   { "#        #            #           #       #                #" },
+   { "#        #           #             #      #                #" },
+   { "#        #          #               #     # # # # # #      #" },
+   { "#                                                          #" },
+   { "#                                                          #" },
+   { "#                                                          #" },
+   { "#        ##        ##           #          ##        #     #" },
+   { "#        # #      # #          # #         # #       #     #" },
+   { "#        #  #    #  #         #   #        #  #      #     #" },
+   { "#        #    # #   #        #     #       #   #     #     #" },
+   { "#        #     #    #       # # # # #      #    #    #     #" },
+   { "#        #          #      #         #     #     #   #     #" },
+   { "#        #          #     #           #    #      #  #     #" },
+   { "#        #          #    #             #   #       # #     #" },
+   { "#        #          #   #               #  #        ##     #" },
+   { "#                                                          #" },
+   { "#                                                          #" },
+   { "#                                                          #" },
+   { "#                                                          #" },
+   { "#                                                          #" },
+   { "############################################################" }
+	};
+	//init_area();
+	init_ghost(area,list_ghost,pacman);
+	int max_move=1000000;
+	while(check_lives(pacman,area)==0 && max_move>0)
+	{
+		instructions(pacman,area,list_ghost);
+		move_pacman(pacman,area);
+		max_move=max_move-1;
+		//system('clear');		
+	}
+	return 0;
+	}
+	else
+	{
+		printf("Veuillez saisir une valeur attendue\n");
+		return 1;
+	}
 }
 
 

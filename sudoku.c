@@ -78,7 +78,7 @@ void remove_elements(int grid[DIM][DIM])
 	}
 }
 
-
+//for(int i=0; i<2; i++)
 
 void seize_number(int grid[DIM][DIM])
 {
@@ -391,8 +391,34 @@ void full_grid(int grid[DIM][DIM])
 				}
 	}
 }
-			
 
+void check_grid(int grid[DIM][DIM],int final_grid[DIM][DIM])
+{
+	int errors=0;
+	for (int k = 0; k<DIM; k++)
+	{
+		for ( int l = 0; l<DIM; l++)
+		{
+			if (grid[k][l]!=final_grid[k][l])
+			{
+				grid[k][l]=0;
+				errors+=1;
+			}
+		}
+	}
+	if(errors==0)
+	{
+		printf("Félicitations, votre grille est correcte\n");
+	}
+	else
+	{
+		printf("Votre grille comporte %d erreurs, essayez de les corriger\n",errors);
+	}
+	
+}
+
+			
+	
 													
 				
 

@@ -212,7 +212,7 @@ void move_pacman(struct pacman* pacman,char area[H][W])
 	int test_x=pacman->p_coor.x+pacman->p_nx;
 	int test_y=pacman->p_coor.y+pacman->p_ny;
 	//On regarde si notre pacman reste dans l'aire de jeu quand on met à jour ses coordonnées
-	if(test_x<=0 || test_x>=W || test_y<=0 || test_y>=H || area[test_y][test_x]=='G')
+	if(test_x<=0 || test_x>=W-1 || test_y<=0 || test_y>=H-1 || area[test_y][test_x]=='G')
 	{
 		//Si ce n'est pas le cas, on lui enlève une vie et on le remet en (1,1)
 		area[pacman->p_coor.y][pacman->p_coor.x]=' ';

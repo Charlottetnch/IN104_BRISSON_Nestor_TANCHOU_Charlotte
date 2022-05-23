@@ -4,6 +4,7 @@
 #include <string.h>
 
 
+//LOLILOL
 
 //#include <curses.h>
 //On doit ajouter -lcurses pour compiler avec gcc  (pour le getch())

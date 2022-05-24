@@ -40,10 +40,10 @@ int main()
 			{
 				seize_number(grid);
 				show_grid(grid);
-				check_grid(grid,grille_finale);
+				//check_grid(grid,grille_finale);
 
 			}
-
+		check_grid(grid,grille_finale);
 		}
 	
 

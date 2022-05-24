@@ -76,6 +76,7 @@ void remove_elements(int grid[DIM][DIM])
 		printf("Vérifiez que le nombre est bien compris entre 0 et 2\n");
 		remove_elements(grid);
 	}
+	
 }
 
 //for(int i=0; i<2; i++)
